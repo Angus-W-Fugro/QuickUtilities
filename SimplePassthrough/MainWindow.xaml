@@ -12,77 +12,86 @@
         WindowStartupLocation="CenterScreen">
     
     <Grid Margin="20,20,12,12">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>        
+        
+        <Grid Grid.Column="0" Margin="0,0,8,8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
-        <GroupBox Grid.Row="0" Header="Incoming Port" Padding="0,0,8,8">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="10" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                
+            <GroupBox Grid.Row="0" Margin="0,0,8,8" Padding="8" Header="Incoming Port">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Port Type: " VerticalAlignment="Center" />
+                    <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding AvailablePortTypes}" SelectedItem="{Binding IncomingPortType}" Width="100" />
+
+                    <TextBlock Grid.Row="0" Grid.Column="3" Text="Address: " VerticalAlignment="Center" />
+                    <TextBox Grid.Row="0" Grid.Column="4" Text="{Binding IncomingPortAddress, UpdateSourceTrigger=PropertyChanged}" Width="120" />
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Grid.Row="1" Header="Outgoing Port" Margin="0,0,8,8" Padding="8">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Port Type: " VerticalAlignment="Center" />
+                    <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding AvailablePortTypes}" SelectedItem="{Binding OutgoingPortType}" Width="100" />
+
+                    <TextBlock Grid.Row="0" Grid.Column="3" Text="Address: " VerticalAlignment="Center" />
+                    <TextBox Grid.Row="0" Grid.Column="4" Text="{Binding OutgoingPortAddress, UpdateSourceTrigger=PropertyChanged}" Width="120" />
+                </Grid>
+            </GroupBox>
+
+            <Grid Grid.Row="2" Margin="0,0,8,8">
+                <UniformGrid Rows="1" HorizontalAlignment="Left">
+                    <ToggleButton Content="{Binding ToggleButtonLabel}" Command="{Binding ToggleRunCommand}" Padding="12,4" Margin="0,0,8,8" />
+                </UniformGrid>
+            </Grid>
+
+            <Grid Grid.Row="3" Margin="0,0,8,8">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="30" />
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Text="Port Type:" VerticalAlignment="Center" />
-                <ComboBox Grid.Row="0" Grid.Column="1"
-                          ItemsSource="{Binding AvailablePortTypes}"
-                          SelectedItem="{Binding IncomingPortType}"
-                          Width="100" />
-
-                <TextBlock Grid.Row="0" Grid.Column="3" Text="Address:" VerticalAlignment="Center" />
-                <TextBox Grid.Row="0" Grid.Column="4" Text="{Binding IncomingPortAddress, UpdateSourceTrigger=PropertyChanged}" Width="120" />
+                <TextBlock Grid.Column="0" Text="Data: " VerticalAlignment="Center" />
+                <TextBlock Grid.Column="1" Text="{Binding PassedData}" />
             </Grid>
-        </GroupBox>
-
-        <GroupBox Grid.Row="1" Header="Outgoing Port" Padding="0,0,8,8">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="30" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Grid.Row="0" Grid.Column="0" 
-                           Text="Port Type:" 
-                           VerticalAlignment="Center" />
-                <ComboBox Grid.Row="0" Grid.Column="1"
-                          ItemsSource="{Binding AvailablePortTypes}"
-                          SelectedItem="{Binding OutgoingPortType}"
-                          Width="100" />
-
-                <TextBlock Grid.Row="0" Grid.Column="3" Text="Address:" VerticalAlignment="Center" />
-                <TextBox Grid.Row="0" Grid.Column="4" Text="{Binding OutgoingPortAddress, UpdateSourceTrigger=PropertyChanged}" Width="120" />
-            </Grid>
-        </GroupBox>
-
-        <Grid Grid.Row="2" Margin="0,0,8,8">
-            <UniformGrid Rows="1" HorizontalAlignment="Left">
-                <ToggleButton Content="{Binding ToggleButtonLabel}" Command="{Binding ToggleRunCommand}" Margin="0,0,8,8" />
-            </UniformGrid>
         </Grid>
 
-        <Grid Grid.Row="3" Margin="0,0,8,8">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <Grid Grid.Column="1" Margin="0,0,8,8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-            <TextBlock Grid.Column="0" Text="Data: " VerticalAlignment="Center" />
-            <TextBlock Grid.Column="1" Text="{Binding PassedData}" />
+            <TextBlock Grid.Row="0" Margin="0,0,8,8" Text="COM ports:" />
+            <ItemsControl Grid.Row="1" Margin="0,0,8,8" ItemsSource="{Binding ConnectedCOMPorts}" />
         </Grid>
     </Grid>
 </Window>

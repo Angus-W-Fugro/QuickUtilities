@@ -16,6 +16,12 @@ public class MainModel : Model
     private bool _IsRunning;
     private PassthroughManager? _PassthroughManager;
     private string? _PassedData;
+    private ObservableCollection<string> _ConnectedCOMPorts = [];
+
+    public MainModel()
+    {
+        CheckCOMPortLoop();
+    }
 
     public ObservableCollection<PortType> AvailablePortTypes { get; } =
     [
@@ -104,6 +110,34 @@ public class MainModel : Model
             _PassedData = value;
             NotifyPropertyChanged();
         }
+    }
+
+    public ObservableCollection<string> ConnectedCOMPorts
+    {
+        get => _ConnectedCOMPorts;
+        set
+        {
+            _ConnectedCOMPorts = value;
+            NotifyPropertyChanged();
+        }
+    }
+
+    private void CheckCOMPortLoop()
+    {
+        Task.Run(async () =>
+        {
+            while (true)
+            {
+                var ports = System.IO.Ports.SerialPort.GetPortNames();
+
+                Application.Current?.Dispatcher.Invoke(() =>
+                {
+                    ConnectedCOMPorts = new ObservableCollection<string>(ports);
+                });
+
+                await Task.Delay(1000);
+            }
+        });
     }
 
     public void LogData(string data)
