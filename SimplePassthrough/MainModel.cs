@@ -82,7 +82,7 @@ public class MainModel : Model
     {
         if (IsRunning)
         {
-            _PassthroughManager?.Dispose();
+            StopRunning();
             IsRunning = false;
         }
         else
@@ -127,6 +127,13 @@ public class MainModel : Model
         {
             MessageBox.Show($"Failed to start passthrough: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+    }
+
+    private void StopRunning()
+    {
+        _PassthroughManager?.Dispose();
+        _PassthroughManager = null;
+        PassedData = null;
     }
 
     private IPortWrapper CreatePort(PortType portType, string address, bool listening)
