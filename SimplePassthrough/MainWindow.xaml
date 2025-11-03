@@ -15,7 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <GroupBox Grid.Row="0" Header="Incoming Port" Padding="0,0,8,8">
@@ -69,5 +69,11 @@
                          Width="120" />
             </Grid>
         </GroupBox>
+
+        <Grid Grid.Row="2" Margin="0,0,8,8">
+            <UniformGrid Rows="1" HorizontalAlignment="Left">
+                <ToggleButton Content="{Binding ToggleButtonLabel}" Command="{Binding ToggleRunCommand}" Margin="0,0,8,8" />
+            </UniformGrid>
+        </Grid>
     </Grid>
 </Window>
