@@ -10,13 +10,13 @@ public class PassthroughManager : IDisposable
     private readonly UdpClient _UdpClient;
     private byte[] _Buffer = [];
 
-    public PassthroughManager(string incomingCOMPort, string outgoingUDPPort)
+    public PassthroughManager(string incomingCOMPort, int outgoingUDPPort)
     {
         _SerialPort = new SerialPort(incomingCOMPort);
         _SerialPort.Open();
 
         _UdpClient = new UdpClient();
-        var address = new IPEndPoint(IPAddress.Any, int.Parse(outgoingUDPPort));
+        var address = new IPEndPoint(IPAddress.Any, outgoingUDPPort);
         _UdpClient.Connect(address);
 
         _SerialPort.DataReceived += SerialPort_DataReceived;

@@ -1,7 +1,4 @@
-﻿using System.IO.Ports;
-using System.Net;
-using System.Net.Sockets;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace QuickPassthrough;
 
@@ -31,12 +28,12 @@ internal class Program
 
     private static void Run()
     {
-        Console.WriteLine("Starting QuickPassthrough\n---");
+        Console.WriteLine("Starting QuickPassthrough...\n\n");
 
         if (!File.Exists(ConfigFileName))
         {
             Console.WriteLine($"Config file '{ConfigFileName}' not found. Default file will be created. Run the app again to use it.");
-            var defaultConfig = new Config("COM1", "8080");
+            var defaultConfig = new Config("COM1", 8080);
             var defaultConfigJson = JsonSerializer.Serialize(defaultConfig, new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(ConfigFileName, defaultConfigJson);
             OpenFile(ConfigFileName);
@@ -75,4 +72,4 @@ internal class Program
     }
 }
 
-public record Config(string IncomingCOMPort, string OutgoingUDPPort);
+public record Config(string IncomingCOMPort, int OutgoingUDPPort);
