@@ -11,13 +11,16 @@ public class UdpPortWrapper : IPortWrapper
     public UdpPortWrapper(string portNumber, bool listening)
     {
         var port = int.Parse(portNumber);
-        _UdpClient = new UdpClient();
         _Address = new IPEndPoint(IPAddress.Loopback, port);
 
         if (listening)
         {
-            _UdpClient.Connect(_Address);
+            _UdpClient = new UdpClient(port);
             StartListening();
+        }
+        else
+        {
+            _UdpClient = new UdpClient();
         }
     }
 

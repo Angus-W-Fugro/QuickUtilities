@@ -16,6 +16,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <GroupBox Grid.Row="0" Header="Incoming Port" Padding="0,0,8,8">
@@ -64,9 +65,7 @@
                           Width="100" />
 
                 <TextBlock Grid.Row="0" Grid.Column="3" Text="Address:" VerticalAlignment="Center" />
-                <TextBox Grid.Row="0" Grid.Column="4"
-                         Text="{Binding OutgoingPortAddress, UpdateSourceTrigger=PropertyChanged}"
-                         Width="120" />
+                <TextBox Grid.Row="0" Grid.Column="4" Text="{Binding OutgoingPortAddress, UpdateSourceTrigger=PropertyChanged}" Width="120" />
             </Grid>
         </GroupBox>
 
@@ -74,6 +73,16 @@
             <UniformGrid Rows="1" HorizontalAlignment="Left">
                 <ToggleButton Content="{Binding ToggleButtonLabel}" Command="{Binding ToggleRunCommand}" Margin="0,0,8,8" />
             </UniformGrid>
+        </Grid>
+
+        <Grid Grid.Row="3" Margin="0,0,8,8">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="Data: " VerticalAlignment="Center" />
+            <TextBlock Grid.Column="1" Text="{Binding PassedData}" />
         </Grid>
     </Grid>
 </Window>

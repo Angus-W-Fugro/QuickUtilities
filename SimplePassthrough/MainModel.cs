@@ -18,6 +18,7 @@ public class MainModel : Model
     private string _OutgoingPortAddress = "8080";
     private bool _IsRunning;
     private PassthroughManager? _PassthroughManager;
+    private string? _PassedData;
 
     public ObservableCollection<PortType> AvailablePortTypes { get; } =
     [
@@ -98,6 +99,24 @@ public class MainModel : Model
         }
     }
 
+    public string? PassedData
+    {
+        get => _PassedData;
+        set
+        {
+            _PassedData = value;
+            NotifyPropertyChanged();
+        }
+    }
+
+    public void LogData(string data)
+    {
+        Application.Current?.Dispatcher.Invoke(() =>
+        {
+            PassedData = data;
+        });
+    }
+
     private void StartRunning()
     {
         try
@@ -105,7 +124,7 @@ public class MainModel : Model
             var incomingPort = CreatePort(IncomingPortType, IncomingPortAddress, true);
             var outgoingPort = CreatePort(OutgoingPortType, OutgoingPortAddress, false);
 
-            _PassthroughManager = new PassthroughManager(incomingPort, outgoingPort);
+            _PassthroughManager = new PassthroughManager(incomingPort, outgoingPort, LogData);
         }
         catch (Exception ex)
         {
