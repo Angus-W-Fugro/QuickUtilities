@@ -9,8 +9,10 @@
         d:DataContext="{d:DesignInstance Type={x:Type local:MainModel}}"
         Width="600"
         SizeToContent="Height"
-        WindowStartupLocation="CenterScreen">
-    
+        WindowStartupLocation="CenterScreen"
+        xmlns:ui="http://schemas.modernwpf.com/2019"
+        ui:WindowHelper.UseModernWindowStyle="True">
+
     <Grid Margin="20,20,12,12">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -27,12 +29,6 @@
 
             <GroupBox Grid.Row="0" Margin="0,0,8,8" Padding="8" Header="Incoming Port">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="10" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
@@ -41,11 +37,11 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Port Type: " VerticalAlignment="Center" />
-                    <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding AvailablePortTypes}" SelectedItem="{Binding IncomingPortType}" Width="100" />
+                    <TextBlock Grid.Column="0" Text="Port Type: " VerticalAlignment="Center" />
+                    <ComboBox Grid.Column="1" ItemsSource="{Binding AvailablePortTypes}" SelectedItem="{Binding IncomingPortType}" Width="100" />
 
-                    <TextBlock Grid.Row="0" Grid.Column="3" Text="Address: " VerticalAlignment="Center" />
-                    <TextBox Grid.Row="0" Grid.Column="4" Text="{Binding IncomingPortAddress, UpdateSourceTrigger=PropertyChanged}" Width="120" />
+                    <TextBlock Grid.Column="3" Text="Address: " VerticalAlignment="Center" />
+                    <TextBox Grid.Column="4" Text="{Binding IncomingPortAddress, UpdateSourceTrigger=PropertyChanged}" Width="120" />
                 </Grid>
             </GroupBox>
 
@@ -59,11 +55,11 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Port Type: " VerticalAlignment="Center" />
-                    <ComboBox Grid.Row="0" Grid.Column="1" ItemsSource="{Binding AvailablePortTypes}" SelectedItem="{Binding OutgoingPortType}" Width="100" />
+                    <TextBlock Grid.Column="0" Text="Port Type: " VerticalAlignment="Center" />
+                    <ComboBox Grid.Column="1" ItemsSource="{Binding AvailablePortTypes}" SelectedItem="{Binding OutgoingPortType}" Width="100" />
 
-                    <TextBlock Grid.Row="0" Grid.Column="3" Text="Address: " VerticalAlignment="Center" />
-                    <TextBox Grid.Row="0" Grid.Column="4" Text="{Binding OutgoingPortAddress, UpdateSourceTrigger=PropertyChanged}" Width="120" />
+                    <TextBlock Grid.Column="3" Text="Address: " VerticalAlignment="Center" />
+                    <TextBox Grid.Column="4" Text="{Binding OutgoingPortAddress, UpdateSourceTrigger=PropertyChanged}" Width="120" />
                 </Grid>
             </GroupBox>
 
@@ -84,14 +80,8 @@
             </Grid>
         </Grid>
 
-        <Grid Grid.Column="1" Margin="0,0,8,8">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-
-            <TextBlock Grid.Row="0" Margin="0,0,8,8" Text="COM ports:" />
+        <GroupBox Grid.Column="1" Header="COM ports" Margin="0,0,8,8">
             <ItemsControl Grid.Row="1" Margin="0,0,8,8" ItemsSource="{Binding ConnectedCOMPorts}" />
-        </Grid>
+        </GroupBox>
     </Grid>
 </Window>
