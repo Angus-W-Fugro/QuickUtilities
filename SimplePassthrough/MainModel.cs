@@ -10,70 +10,54 @@ public enum PortType
 
 public class MainModel : Model
 {
-    private PortType _incomingPortType = PortType.COM;
-    private string _incomingPortAddress = "COM1";
-    private PortType _outgoingPortType = PortType.COM;
-    private string _outgoingPortAddress = "COM2";
+    private PortType _IncomingPortType = PortType.COM;
+    private string _IncomingPortAddress = "COM1";
+    private PortType _OutgoingPortType = PortType.UDP;
+    private string _OutgoingPortAddress = "8080";
 
-    public ObservableCollection<PortType> AvailablePortTypes { get; } = new()
-    {
+    public ObservableCollection<PortType> AvailablePortTypes { get; } =
+    [
         PortType.COM,
         PortType.UDP
-    };
+    ];
 
     public PortType IncomingPortType
     {
-        get => _incomingPortType;
+        get => _IncomingPortType;
         set
         {
-            if (_incomingPortType != value)
-            {
-                _incomingPortType = value;
-                NotifyPropertyChanged();
-                // Set default address based on port type
-                IncomingPortAddress = value == PortType.COM ? "COM1" : "8080";
-            }
+            _IncomingPortType = value;
+            NotifyPropertyChanged();
         }
     }
 
     public string IncomingPortAddress
     {
-        get => _incomingPortAddress;
+        get => _IncomingPortAddress;
         set
         {
-            if (_incomingPortAddress != value)
-            {
-                _incomingPortAddress = value;
-                NotifyPropertyChanged();
-            }
+            _IncomingPortAddress = value;
+            NotifyPropertyChanged();
         }
     }
 
     public PortType OutgoingPortType
     {
-        get => _outgoingPortType;
+        get => _OutgoingPortType;
         set
         {
-            if (_outgoingPortType != value)
-            {
-                _outgoingPortType = value;
-                NotifyPropertyChanged();
-                // Set default address based on port type
-                OutgoingPortAddress = value == PortType.COM ? "COM2" : "8081";
-            }
+            _OutgoingPortType = value;
+            NotifyPropertyChanged();
         }
     }
 
     public string OutgoingPortAddress
     {
-        get => _outgoingPortAddress;
+        get => _OutgoingPortAddress;
         set
         {
-            if (_outgoingPortAddress != value)
-            {
-                _outgoingPortAddress = value;
-                NotifyPropertyChanged();
-            }
+            _OutgoingPortAddress = value;
+            NotifyPropertyChanged();
         }
     }
 }
