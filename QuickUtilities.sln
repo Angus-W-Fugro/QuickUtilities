@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36414.22 d17.14
+VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickPassthrough", "QuickPassthrough\QuickPassthrough.csproj", "{FD6121E1-AD7E-46BF-B174-1D47098FD48F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePassthrough", "SimplePassthrough\SimplePassthrough.csproj", "{C7C43544-F8DF-43A4-B240-4B466C52F383}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FD6121E1-AD7E-46BF-B174-1D47098FD48F}.Debug|x64.Build.0 = Debug|x64
 		{FD6121E1-AD7E-46BF-B174-1D47098FD48F}.Release|x64.ActiveCfg = Release|x64
 		{FD6121E1-AD7E-46BF-B174-1D47098FD48F}.Release|x64.Build.0 = Release|x64
+		{C7C43544-F8DF-43A4-B240-4B466C52F383}.Debug|x64.ActiveCfg = Debug|x64
+		{C7C43544-F8DF-43A4-B240-4B466C52F383}.Debug|x64.Build.0 = Debug|x64
+		{C7C43544-F8DF-43A4-B240-4B466C52F383}.Release|x64.ActiveCfg = Release|x64
+		{C7C43544-F8DF-43A4-B240-4B466C52F383}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
