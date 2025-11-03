@@ -12,10 +12,7 @@ public enum PortType
 
 public class MainModel : Model
 {
-    private PortType _IncomingPortType = PortType.COM;
-    private string _IncomingPortAddress = "COM1";
-    private PortType _OutgoingPortType = PortType.UDP;
-    private string _OutgoingPortAddress = "8080";
+    private Config _Config = new Config();
     private bool _IsRunning;
     private PassthroughManager? _PassthroughManager;
     private string? _PassedData;
@@ -28,40 +25,40 @@ public class MainModel : Model
 
     public PortType IncomingPortType
     {
-        get => _IncomingPortType;
+        get => _Config.IncomingPortType;
         set
         {
-            _IncomingPortType = value;
+            _Config.IncomingPortType = value;
             NotifyPropertyChanged();
         }
     }
 
     public string IncomingPortAddress
     {
-        get => _IncomingPortAddress;
+        get => _Config.IncomingPortAddress;
         set
         {
-            _IncomingPortAddress = value;
+            _Config.IncomingPortAddress = value;
             NotifyPropertyChanged();
         }
     }
 
     public PortType OutgoingPortType
     {
-        get => _OutgoingPortType;
+        get => _Config.OutgoingPortType;
         set
         {
-            _OutgoingPortType = value;
+            _Config.OutgoingPortType = value;
             NotifyPropertyChanged();
         }
     }
 
     public string OutgoingPortAddress
     {
-        get => _OutgoingPortAddress;
+        get => _Config.OutgoingPortAddress;
         set
         {
-            _OutgoingPortAddress = value;
+            _Config.OutgoingPortAddress = value;
             NotifyPropertyChanged();
         }
     }
