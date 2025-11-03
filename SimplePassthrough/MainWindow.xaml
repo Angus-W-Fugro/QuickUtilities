@@ -5,8 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SimplePassthrough"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Simple Passthrough"
+        d:DataContext="{d:DesignInstance Type={x:Type local:MainModel}}"
+        Height="450" Width="800">
+    
+    <Grid Margin="8,8,0,0">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
 
+            <TextBlock Grid.Row="0" Margin="0,0,8,8" Text="Incoming Port" />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+            <ComboBox Grid.Row="1" Margin="0,0,8,8" />
+        </Grid>
     </Grid>
 </Window>
