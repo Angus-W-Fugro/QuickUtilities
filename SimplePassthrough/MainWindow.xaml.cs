@@ -19,6 +19,7 @@ namespace SimplePassthrough
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainModel();
         }
     }
 }
