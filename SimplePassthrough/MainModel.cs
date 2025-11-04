@@ -69,7 +69,7 @@ public class MainModel : Model
         }
     }
 
-    public string ToggleButtonLabel => IsRunning ? "Stop" : "Start";
+    public string ToggleButtonLabel => IsRunning ? "Open" : "Closed";
 
     public bool IsRunning
     {

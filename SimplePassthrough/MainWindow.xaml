@@ -65,7 +65,7 @@
 
             <Grid Grid.Row="2" Margin="0,0,8,8">
                 <UniformGrid Rows="1" HorizontalAlignment="Left">
-                    <ToggleButton Content="{Binding ToggleButtonLabel}" Command="{Binding ToggleRunCommand}" Padding="12,4" Margin="0,0,8,8" />
+                    <ToggleButton Width="100" Content="{Binding ToggleButtonLabel}" Command="{Binding ToggleRunCommand}" Padding="12,4" Margin="0,0,8,8" />
                 </UniformGrid>
             </Grid>
 
@@ -80,7 +80,7 @@
             </Grid>
         </Grid>
 
-        <GroupBox Grid.Column="1" Header="COM ports" Margin="0,0,8,8">
+        <GroupBox Grid.Column="1" Header="COM ports" Margin="0,0,8,8" Padding="8">
             <ItemsControl Grid.Row="1" Margin="0,0,8,8" ItemsSource="{Binding ConnectedCOMPorts}" />
         </GroupBox>
     </Grid>

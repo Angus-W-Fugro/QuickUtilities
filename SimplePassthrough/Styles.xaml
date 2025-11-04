@@ -14,8 +14,11 @@
                             <ContentPresenter ContentSource="Header" />
                         </Label>
 
-                        <Border Grid.Row="1" BorderBrush="LightGray" BorderThickness="1" CornerRadius="4"
-                                Padding="{TemplateBinding Padding}">
+                        <Border Grid.Row="1" BorderThickness="1" CornerRadius="4" Padding="{TemplateBinding Padding}">
+                            <Border.BorderBrush>
+                                <SolidColorBrush Color="LightGray" Opacity="0.8" />
+                            </Border.BorderBrush>
+                            
                             <ContentPresenter />
                         </Border>
                     </Grid>
