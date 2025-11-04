@@ -38,6 +38,8 @@ public class MainModel : Model
         {
             _Config.IncomingPortType = value;
             NotifyPropertyChanged();
+            NotifyPropertyChanged(nameof(IncomingPortPlaceholder));
+            IncomingPortAddress = string.Empty;
         }
     }
 
@@ -58,6 +60,8 @@ public class MainModel : Model
         {
             _Config.OutgoingPortType = value;
             NotifyPropertyChanged();
+            NotifyPropertyChanged(nameof(OutgoingPortPlaceholder));
+            OutgoingPortAddress = string.Empty;
         }
     }
 
@@ -70,6 +74,10 @@ public class MainModel : Model
             NotifyPropertyChanged();
         }
     }
+
+    public string OutgoingPortPlaceholder => OutgoingPortType == PortType.COM ? "e.g. COM1" : "e.g. 127.0.0.1:8080";
+
+    public string IncomingPortPlaceholder => IncomingPortType == PortType.COM ? "e.g. COM1" : "e.g. 127.0.0.1:8080";
 
     public string ToggleButtonLabel => IsRunning ? "Open" : "Closed";
 
@@ -152,6 +160,7 @@ public class MainModel : Model
 
     private void StartRunning()
     {
+        _PassthroughManager?.Dispose();
         _IncomingPort?.Dispose();
         _OutgoingPort?.Dispose();
 

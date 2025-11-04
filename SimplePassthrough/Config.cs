@@ -7,9 +7,9 @@ public class Config
 {
     private ConfigRecord _Record = new ConfigRecord(
         IncomingPortType: PortType.COM,
-        IncomingPortAddress: "COM1",
+        IncomingPortAddress: string.Empty,
         OutgoingPortType: PortType.UDP,
-        OutgoingPortAddress: "8080"
+        OutgoingPortAddress: string.Empty
     );
 
     public Config()
