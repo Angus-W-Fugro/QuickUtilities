@@ -79,8 +79,6 @@ public class MainModel : Model
 
     public string IncomingPortPlaceholder => IncomingPortType == PortType.COM ? "e.g. COM1" : "e.g. 127.0.0.1:8080";
 
-    public string ToggleButtonLabel => IsOpen ? "Open" : "Closed";
-
     public bool IsOpen
     {
         get => _IsOpen;
@@ -88,9 +86,11 @@ public class MainModel : Model
         {
             _IsOpen = value;
             NotifyPropertyChanged();
-            NotifyPropertyChanged(nameof(ToggleButtonLabel));
+            NotifyPropertyChanged(nameof(IsClosed));
         }
     }
+
+    public bool IsClosed => !_IsOpen;
 
     public ICommand ToggleOpenCommand => new Command(ToggleOpen);
 

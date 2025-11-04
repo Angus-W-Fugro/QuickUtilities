@@ -13,10 +13,6 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         ui:WindowHelper.UseModernWindowStyle="True">
 
-    <Window.Resources>
-        <local:InvertBoolConverter x:Key="InvertBoolConverter" />
-    </Window.Resources>
-    
     <Grid Margin="20,20,12,12">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -31,7 +27,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <GroupBox Grid.Row="0" Margin="0,0,8,8" Padding="8" Header="Incoming Port" IsEnabled="{Binding IsOpen, Converter={StaticResource InvertBoolConverter}}">
+            <GroupBox Grid.Row="0" Margin="0,0,8,8" Padding="8" Header="Incoming Port" IsEnabled="{Binding IsClosed}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -49,7 +45,7 @@
                 </Grid>
             </GroupBox>
 
-            <GroupBox Grid.Row="1" Header="Outgoing Port" Margin="0,0,8,8" Padding="8" IsEnabled="{Binding IsOpen, Converter={StaticResource InvertBoolConverter}}">
+            <GroupBox Grid.Row="1" Header="Outgoing Port" Margin="0,0,8,8" Padding="8" IsEnabled="{Binding IsClosed}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -69,7 +65,12 @@
 
             <Grid Grid.Row="2" Margin="0,0,8,8">
                 <UniformGrid Rows="1" HorizontalAlignment="Left">
-                    <ToggleButton Width="100" Content="{Binding ToggleButtonLabel}" Command="{Binding ToggleOpenCommand}" Padding="12,4" Margin="0,0,8,8" />
+                    <Button Width="100" Content="Open"  
+                            IsEnabled="{Binding IsClosed}" 
+                            Command="{Binding ToggleOpenCommand}" Padding="12,4" Margin="0,0,8,8" />
+                    <Button Width="100" Content="Close" 
+                            IsEnabled="{Binding IsOpen}" 
+                            Command="{Binding ToggleOpenCommand}" Padding="12,4" Margin="0,0,8,8" />
                 </UniformGrid>
             </Grid>
 
