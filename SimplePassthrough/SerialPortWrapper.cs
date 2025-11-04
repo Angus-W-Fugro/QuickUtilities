@@ -18,6 +18,10 @@ public class SerialPortWrapper : IPortWrapper
         _SerialPort.Open();
 
         _SerialPort.DataReceived += _SerialPort_DataReceived;
+
+#if DEBUG
+        StartFCPPoll();
+#endif
     }
 
     private void _SerialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -39,5 +43,20 @@ public class SerialPortWrapper : IPortWrapper
     public void Send(byte[] data)
     {
         _SerialPort.Write(data, 0, data.Length);
+    }
+
+    private void StartFCPPoll()
+    {
+        Task.Run(async () =>
+        {
+            var pollCommand = "#01\r";
+
+            while (true && _SerialPort.IsOpen)
+            {
+                _SerialPort.Write(pollCommand);
+
+                await Task.Delay(1000);
+            }
+        });
     }
 }
