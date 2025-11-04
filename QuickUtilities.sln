@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickPassthrough", "QuickPa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePassthrough", "SimplePassthrough\SimplePassthrough.csproj", "{C7C43544-F8DF-43A4-B240-4B466C52F383}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickNavSim", "QuickNavSim\QuickNavSim.csproj", "{26D2F9A7-162A-48AB-BC74-1CA3282E5D44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,10 @@ Global
 		{C7C43544-F8DF-43A4-B240-4B466C52F383}.Debug|x64.Build.0 = Debug|x64
 		{C7C43544-F8DF-43A4-B240-4B466C52F383}.Release|x64.ActiveCfg = Release|x64
 		{C7C43544-F8DF-43A4-B240-4B466C52F383}.Release|x64.Build.0 = Release|x64
+		{26D2F9A7-162A-48AB-BC74-1CA3282E5D44}.Debug|x64.ActiveCfg = Debug|x64
+		{26D2F9A7-162A-48AB-BC74-1CA3282E5D44}.Debug|x64.Build.0 = Debug|x64
+		{26D2F9A7-162A-48AB-BC74-1CA3282E5D44}.Release|x64.ActiveCfg = Release|x64
+		{26D2F9A7-162A-48AB-BC74-1CA3282E5D44}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
