@@ -80,8 +80,8 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="0" Text="Data: " VerticalAlignment="Center" />
-                <TextBlock Grid.Column="1" Text="{Binding PassedData}" />
+                <TextBlock Grid.Column="0" Text="Data: " VerticalAlignment="Top" />
+                <TextBlock Grid.Column="1" VerticalAlignment="Top" TextWrapping="Wrap" Text="{Binding PassedData}" />
             </Grid>
         </Grid>
 

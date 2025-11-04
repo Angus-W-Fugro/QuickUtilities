@@ -7,9 +7,11 @@ public class UdpPortWrapper : IPortWrapper
 {
     private UdpClient _UdpClient;
     private IPEndPoint _Endpoint;
+    private CancellationTokenSource _CancelTokenSource;
 
     public UdpPortWrapper(string address, bool listening)
     {
+        _CancelTokenSource = new CancellationTokenSource();
         _Endpoint = IPEndPoint.Parse(address);
 
         if (listening)
@@ -27,17 +29,26 @@ public class UdpPortWrapper : IPortWrapper
     {
         Task.Run(async () =>
         {
+            var cancelToken = _CancelTokenSource.Token;
+
             try
             {
                 while (true)
                 {
-                    var result = await _UdpClient.ReceiveAsync();
+                    var result = await _UdpClient.ReceiveAsync(cancelToken);
                     DataReceived?.Invoke(this, result.Buffer);
                 }
             }
-            catch (ObjectDisposedException)
+            catch (Exception)
             {
-                // Socket has been closed, exit the loop
+                if (cancelToken.IsCancellationRequested)
+                {
+                    return;
+                }
+                else
+                {
+                    throw;
+                }
             }
         });
     }
@@ -46,6 +57,8 @@ public class UdpPortWrapper : IPortWrapper
 
     public void Dispose()
     {
+        _CancelTokenSource.Cancel();
+
         _UdpClient.Dispose();
     }
 
