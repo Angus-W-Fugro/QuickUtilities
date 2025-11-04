@@ -15,6 +15,8 @@ public class MainModel : Model
     private Config _Config = new Config();
     private bool _IsRunning;
     private PassthroughManager? _PassthroughManager;
+    private IPortWrapper? _IncomingPort;
+    private IPortWrapper? _OutgoingPort;
     private string? _PassedData;
     private ObservableCollection<string> _ConnectedCOMPorts = [];
 
@@ -150,12 +152,15 @@ public class MainModel : Model
 
     private void StartRunning()
     {
+        _IncomingPort?.Dispose();
+        _OutgoingPort?.Dispose();
+
         try
         {
-            var incomingPort = CreatePort(IncomingPortType, IncomingPortAddress, true);
-            var outgoingPort = CreatePort(OutgoingPortType, OutgoingPortAddress, false);
+            _IncomingPort = CreatePort(IncomingPortType, IncomingPortAddress, true);
+            _OutgoingPort = CreatePort(OutgoingPortType, OutgoingPortAddress, false);
 
-            _PassthroughManager = new PassthroughManager(incomingPort, outgoingPort, LogData);
+            _PassthroughManager = new PassthroughManager(_IncomingPort, _OutgoingPort, LogData);
         }
         catch (Exception ex)
         {

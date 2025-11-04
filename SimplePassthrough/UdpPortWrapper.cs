@@ -6,16 +6,15 @@ namespace SimplePassthrough;
 public class UdpPortWrapper : IPortWrapper
 {
     private UdpClient _UdpClient;
-    private IPEndPoint _Address;
+    private IPEndPoint _Endpoint;
 
-    public UdpPortWrapper(string portNumber, bool listening)
+    public UdpPortWrapper(string address, bool listening)
     {
-        var port = int.Parse(portNumber);
-        _Address = new IPEndPoint(IPAddress.Loopback, port);
+        _Endpoint = IPEndPoint.Parse(address);
 
         if (listening)
         {
-            _UdpClient = new UdpClient(port);
+            _UdpClient = new UdpClient(_Endpoint.Port);
             StartListening();
         }
         else
@@ -52,6 +51,6 @@ public class UdpPortWrapper : IPortWrapper
 
     public void Send(byte[] data)
     {
-        _UdpClient.Send(data, data.Length, _Address);
+        _UdpClient.Send(data, data.Length, _Endpoint);
     }
 }
