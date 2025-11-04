@@ -13,7 +13,7 @@ public enum PortType
 public class MainModel : Model
 {
     private Config _Config = new Config();
-    private bool _IsRunning;
+    private bool _IsOpen = false;
     private PassthroughManager? _PassthroughManager;
     private IPortWrapper? _IncomingPort;
     private IPortWrapper? _OutgoingPort;
@@ -79,35 +79,35 @@ public class MainModel : Model
 
     public string IncomingPortPlaceholder => IncomingPortType == PortType.COM ? "e.g. COM1" : "e.g. 127.0.0.1:8080";
 
-    public string ToggleButtonLabel => IsRunning ? "Open" : "Closed";
+    public string ToggleButtonLabel => IsOpen ? "Open" : "Closed";
 
-    public bool IsRunning
+    public bool IsOpen
     {
-        get => _IsRunning;
+        get => _IsOpen;
         set
         {
-            _IsRunning = value;
+            _IsOpen = value;
             NotifyPropertyChanged();
             NotifyPropertyChanged(nameof(ToggleButtonLabel));
         }
     }
 
-    public ICommand ToggleRunCommand => new Command(ToggleRun);
+    public ICommand ToggleOpenCommand => new Command(ToggleOpen);
 
-    private void ToggleRun()
+    private void ToggleOpen()
     {
-        if (IsRunning)
+        if (IsOpen)
         {
-            StopRunning();
-            IsRunning = false;
+            ClosePorts();
+            IsOpen = false;
         }
         else
         {
-            StartRunning();
+            OpenPorts();
 
             if (_PassthroughManager is not null)
             {
-                IsRunning = true;
+                IsOpen = true;
             }
         }
     }
@@ -158,7 +158,7 @@ public class MainModel : Model
         });
     }
 
-    private void StartRunning()
+    private void OpenPorts()
     {
         _PassthroughManager?.Dispose();
         _IncomingPort?.Dispose();
@@ -177,9 +177,11 @@ public class MainModel : Model
         }
     }
 
-    private void StopRunning()
+    private void ClosePorts()
     {
         _PassthroughManager?.Dispose();
+        _IncomingPort?.Dispose();
+        _OutgoingPort?.Dispose();
         _PassthroughManager = null;
         PassedData = null;
     }
